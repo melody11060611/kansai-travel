@@ -139,18 +139,18 @@ body{font-family:'Kosugi Maru','Zen Maru Gothic','Noto Sans TC',sans-serif;backg
 .wx-desc{font-size:13px;color:var(--ink-m)}
 
 /* ═══ TRANSPORT CARD ═══ */
-.transport-card{background:linear-gradient(135deg,var(--tf-2xl),var(--tf-xl));border:2px solid var(--tf-l);border-radius:var(--r);padding:13px 14px;margin-bottom:10px}
-.tc-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-.tc-title{font-size:13px;font-weight:700;color:var(--tf-deeper);display:flex;align-items:center;gap:6px}
-.tc-edit-btns{display:flex;gap:6px}
-.tc-step{display:flex;gap:9px;margin-bottom:5px;align-items:flex-start}
-.tc-num{width:22px;height:22px;border-radius:50%;background:var(--tf-dark);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
-.tc-line{font-size:13px;font-weight:600;color:var(--ink)}
-.tc-detail{font-size:12px;color:var(--ink-m);margin-top:1px}
-.tc-vline{width:22px;display:flex;justify-content:center;flex-shrink:0}
-.tc-vline-i{width:2px;height:10px;background:var(--tf-l);margin:1px auto 0}
-.tc-fare{background:var(--tf-deeper);color:#fff;border-radius:20px;padding:4px 12px;font-size:12px;font-weight:700;display:inline-flex;gap:4px;margin-top:6px}
-.tc-note{font-size:12px;color:var(--ink-m);margin-top:8px;line-height:1.7;background:rgba(255,255,255,.65);border-radius:8px;padding:7px 10px}
+.transport-card{background:linear-gradient(135deg,var(--tf-2xl),var(--tf-xl));border:2px solid var(--tf-l);border-radius:var(--r);padding:15px 16px;margin-bottom:12px}
+.tc-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.tc-title{font-size:22px;font-weight:700;color:var(--tf-deeper);display:flex;align-items:center;gap:7px;line-height:1.3;flex:1}
+.tc-edit-btns{display:flex;gap:7px;flex-shrink:0;margin-left:8px}
+.tc-step{display:flex;gap:10px;margin-bottom:7px;align-items:flex-start}
+.tc-num{width:26px;height:26px;border-radius:50%;background:var(--tf-dark);color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.tc-line{font-size:22px;font-weight:700;color:var(--ink);line-height:1.3}
+.tc-detail{font-size:18px;color:var(--ink-m);margin-top:3px;line-height:1.5}
+.tc-vline{width:26px;display:flex;justify-content:center;flex-shrink:0}
+.tc-vline-i{width:2px;height:12px;background:var(--tf-l);margin:2px auto 0}
+.tc-fare{background:var(--tf-deeper);color:#fff;border-radius:20px;padding:7px 16px;font-size:20px;font-weight:700;display:inline-flex;gap:5px;margin-top:8px}
+.tc-note{font-size:18px;color:var(--ink-m);margin-top:10px;line-height:1.7;background:rgba(255,255,255,.65);border-radius:10px;padding:9px 12px}
 
 /* ═══ SECTION TITLE ═══ */
 .sec-title{font-size:13px;font-weight:700;color:var(--ink-l);letter-spacing:1.2px;margin:16px 0 9px;display:flex;align-items:center;gap:7px}
@@ -347,7 +347,10 @@ body{font-family:'Kosugi Maru','Zen Maru Gothic','Noto Sans TC',sans-serif;backg
 <div class="view active" id="view-schedule">
   <div class="date-strip" id="date-strip-s"></div>
   <div id="wx-s" class="weather-bar"></div>
-  <div class="sec-title">🚉 交通資訊</div>
+  <div style="display:flex;align-items:center;justify-content:space-between;margin:14px 0 8px">
+    <div class="sec-title" style="margin:0;flex:1">🚉 交通資訊</div>
+    <button class="edit-info-btn" onclick="openAddTCModal()" style="flex-shrink:0;margin-left:8px;font-size:16px;padding:8px 14px">＋ 新增</button>
+  </div>
   <div id="tc-s"></div>
   <div class="sec-title">📍 當日行程</div>
   <div class="stop-list" id="stop-list"></div>
@@ -529,7 +532,7 @@ body{font-family:'Kosugi Maru','Zen Maru Gothic','Noto Sans TC',sans-serif;backg
 <div class="modal-bg" id="modal-tc" onclick="closeMBg('modal-tc')">
   <div class="modal" onclick="event.stopPropagation()">
     <div class="modal-handle"></div>
-    <div class="modal-title">編輯交通資訊</div>
+    <div class="modal-title" id="tc-modal-title">編輯交通資訊</div>
     <div class="form-row"><div class="form-lbl">標題</div><input class="form-input" id="tc-m-title" placeholder="e.g. 天下茶屋 → 海遊館"></div>
     <div id="tc-steps-editor"></div>
     <button onclick="addTCStep()" style="width:100%;padding:10px;background:var(--tf-2xl);border:2px dashed var(--tf-l);border-radius:var(--rs);color:var(--tf-deeper);font-size:14px;cursor:pointer;margin-bottom:10px;font-family:'Kosugi Maru','Zen Maru Gothic','Noto Sans TC',sans-serif">＋ 新增步驟</button>
@@ -537,7 +540,7 @@ body{font-family:'Kosugi Maru','Zen Maru Gothic','Noto Sans TC',sans-serif;backg
     <div class="form-row"><div class="form-lbl">備註</div><textarea class="form-input" id="tc-m-note" rows="2" style="resize:none" placeholder="注意事項、小提醒…"></textarea></div>
     <div class="modal-actions">
       <button class="btn-cancel" onclick="closeMBg('modal-tc')">取消</button>
-      <button class="btn-save" onclick="saveTCEdit()">儲存</button>
+      <button class="btn-save" id="tc-save-btn" onclick="saveTCEdit()">儲存</button>
     </div>
   </div>
 </div>
@@ -1241,8 +1244,30 @@ function renderTransport(){
   sec.innerHTML=html;
 }
 
+let tcIsNew=false; // true = adding new, false = editing existing
+
+function openAddTCModal(){
+  tcIsNew=true;
+  tcEditIdx=null; tcEditDayRelIdx=null;
+  document.getElementById('tc-modal-title').textContent='新增交通資訊';
+  document.getElementById('tc-save-btn').textContent='新增';
+  document.getElementById('tc-m-title').value='';
+  document.getElementById('tc-m-fare').value='';
+  document.getElementById('tc-m-note').value='';
+  // Start with one empty step
+  const newTC={title:'',steps:[{n:1,line:'',detail:'',time:''}],fare:'',note:''};
+  // Temporarily push so renderTCStepsEditor works with addTCStep
+  tcData.push(newTC);
+  tcEditIdx=tcData.length-1;
+  renderTCStepsEditor(newTC.steps);
+  document.getElementById('modal-tc').classList.add('open');
+}
+
 function openTCEdit(tcIdx,relIdx){
+  tcIsNew=false;
   tcEditIdx=tcIdx; tcEditDayRelIdx=relIdx;
+  document.getElementById('tc-modal-title').textContent='編輯交通資訊';
+  document.getElementById('tc-save-btn').textContent='儲存';
   const t=tcData[tcIdx];
   document.getElementById('tc-m-title').value=t.title||'';
   document.getElementById('tc-m-fare').value=t.fare||'';
@@ -1257,8 +1282,8 @@ function renderTCStepsEditor(steps){
     const div=document.createElement('div');
     div.style.cssText='background:var(--tf-2xl);border-radius:var(--rs);padding:10px 12px;margin-bottom:8px;border:1.5px solid var(--border)';
     div.innerHTML='<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">'
-      +'<span style="font-size:13px;font-weight:700;color:var(--tf-deeper)">步驟 '+(i+1)+'</span>'
-      +'<button onclick="removeTCStep('+i+')" style="background:#feeeed;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;color:#d45a5a;font-size:13px">✕</button></div>'
+      +'<span style="font-size:15px;font-weight:700;color:var(--tf-deeper)">步驟 '+(i+1)+'</span>'
+      +'<button onclick="removeTCStep('+i+')" style="background:#feeeed;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;color:#d45a5a;font-size:15px">✕</button></div>'
       +'<div class="form-row" style="margin-bottom:8px"><div class="form-lbl">交通方式</div>'
       +'<input class="form-input" id="tc-step-line-'+i+'" value="'+esc(s.line||'')+'"></div>'
       +'<div class="form-row" style="margin-bottom:8px"><div class="form-lbl">詳細路線</div>'
@@ -1281,21 +1306,31 @@ function removeTCStep(i){
 }
 function saveTCEdit(){
   if(tcEditIdx===null)return;
-  tcData[tcEditIdx].title=document.getElementById('tc-m-title').value;
+  const title=document.getElementById('tc-m-title').value.trim();
+  if(!title){alert('請填寫交通標題');return;}
+  tcData[tcEditIdx].title=title;
   tcData[tcEditIdx].fare=document.getElementById('tc-m-fare').value;
   tcData[tcEditIdx].note=document.getElementById('tc-m-note').value;
   const steps=tcData[tcEditIdx].steps;
   steps.forEach((s,i)=>{
-    s.line=document.getElementById('tc-step-line-'+i).value;
-    s.detail=document.getElementById('tc-step-detail-'+i).value;
-    s.time=document.getElementById('tc-step-time-'+i).value;
+    const lineEl=document.getElementById('tc-step-line-'+i);
+    const detailEl=document.getElementById('tc-step-detail-'+i);
+    const timeEl=document.getElementById('tc-step-time-'+i);
+    if(lineEl)s.line=lineEl.value;
+    if(detailEl)s.detail=detailEl.value;
+    if(timeEl)s.time=timeEl.value;
   });
+  if(tcIsNew){
+    // Add index reference to current day's tc array
+    if(!days[currentDay].tc)days[currentDay].tc=[];
+    days[currentDay].tc.push(tcData.length-1);
+  }
   closeMBg('modal-tc');renderTransport();saveAll();showSaveToast('💾 交通資訊已儲存');
 }
 function deleteTCFromDay(relIdx){
   if(!confirm('確定刪除此段交通資訊？'))return;
   days[currentDay].tc.splice(relIdx,1);
-  renderTransport();
+  renderTransport();saveAll();showSaveToast('🗑 交通資訊已刪除');
 }
 
 /* ── Schedule ── */
